@@ -1,0 +1,148 @@
+@import '_bootstrap.scss';
+
+
+
+$viewport-increment: 0.1px; // customize to suite
+
+// Desktop
+$desktop: 1024px; // customize to suite
+$pre-desktop: $desktop - $viewport-increment;
+
+// Tablet
+$tablet: 768px; // customize to suite
+$pre-tablet: $tablet - $viewport-increment;
+
+// Palm
+$palm: 640px; // customize to suite
+$post-palm: $palm + $viewport-increment;
+
+// Constraints
+$min: min-width;
+$max: max-width;
+
+
+
+// ==================================================
+// $Media Query @Mixin
+// ==================================================
+
+@mixin mediaQuery($constraint, $viewport1, $viewport2: null) {
+
+  @if $constraint == $min {
+
+    @media screen and ($min: $viewport1) {
+      @content;
+    }
+
+  } @else if $constraint == $max {
+
+    @media screen and ($max: $viewport1) {
+      @content;
+    }
+
+  } @else {
+
+    @media screen and ($min: $viewport1) and ($max: $viewport2) {
+      @content;
+    }
+
+  }
+
+}
+
+
+// ==================================================
+// The Implementation!
+// ==================================================
+
+p {
+  @include mediaQuery($max, $palm) {
+    font-size: 75%;
+
+  }
+
+  @include mediaQuery(null, $post-palm, $pre-tablet) {
+    font-size: 87.5%;
+  }
+
+  @include mediaQuery($min, $tablet) {
+    font-size: 90%;
+  }
+
+  @include mediaQuery($min, $desktop) {
+    font-size: 108.75%;
+  }
+}
+
+
+
+body {
+
+nav {position: absolute;top:1em;right:1em;
+
+	@include mediaQuery($max, $palm) {
+ 		width:100%;
+
+ 		text-align: right;
+
+ 		border-bottom: 1px solid black;
+ 		padding-right: 1em;
+ 		position: static;
+
+ 		margin: 0;
+ 		a{
+
+ 			border-bottom: 0;
+
+ 		}
+
+  	}
+
+
+}
+
+.container{
+
+	@include mediaQuery($max, $palm) {
+
+		padding: 20% 0;
+
+									}
+
+	}
+
+font-family:'GaramondITCW01-LtNarrow_710013';
+font-family:'GaramondITCW01-BookNarr_710007';
+
+
+font-size: 24px;
+text-align: center;
+
+h1, h2 , p{background: white;}
+
+
+a{color: black;border-bottom: 1px dashed black; &:hover{border-bottom: 0;text-decoration: none;color: black;opacity: 0.8;}}
+
+
+ svg {
+    z-index: -1;
+    position: fixed;
+    top: 20%;
+
+	@include mediaQuery($max, $palm) {
+ 		top:0%;
+
+  	}
+
+
+    left: -50%;
+    width: 200%;
+    height: 200%;
+}
+
+
+}
+
+
+
+
