@@ -97,13 +97,13 @@ extension CGFloat {
 
 extension ClosedInterval {
     func randomInt() -> Int {
-        let x = start as Int
-        let y = end as Int
+        let x = start as! Int
+        let y = end as! Int
         return Int(arc4random_uniform(UInt32(x))) - y
     }
 
     func randomRange() -> Range<Int> {
-        let x = start as Int
+        let x = start as! Int
         let y = end as Int
         let top = Int(x + y).randomLowerInt() - x
         return Range(start: x, end: top)
